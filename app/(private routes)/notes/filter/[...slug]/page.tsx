@@ -14,7 +14,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
         openGraph: {
             title: `NoteHab | ${tag} category`,
             description: `Notes of the ${tag} category`,
-            url: `https://08-zustand-blush.vercel.app/notes/filter/${tag}`,
+            url: `https://09-auth-kappa-seven.vercel.app/notes/filter/${tag}`,
             images: [
                 {
                     url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
