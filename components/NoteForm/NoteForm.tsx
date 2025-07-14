@@ -1,19 +1,22 @@
 'use client'
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNote } from "@/lib/api";
 import { useNoteDraft } from "@/lib/store/noteStore";
-import type { NewNote, Tag} from "../../types/note";
-import css from "./NoteForm.module.css";
+import { createNote } from "@/lib/api/clientApi";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import type { NewNote, Tag} from "../../types/note";
+import css from "./NoteForm.module.css";
+
 
 export default function NoteForm() {
-
+    
     const router = useRouter();
     const queryClient = useQueryClient();
     const { draft, setDraft, clearDraft } = useNoteDraft();
     const [changed, setChanged] = useState(false);
+    
+    const tags = ["Todo", "Work", "Personal", "Meeting", "Shopping", "Ideas", "Travel", "Finance", "Health", "Important"];
 
     const createNoteMutation = useMutation({
         mutationFn: (noteData: NewNote) => createNote(noteData),
@@ -67,12 +70,10 @@ return <form className={css.form} action={handleSubmit}>
         <div className={css.formGroup}>
             <label htmlFor="tag">Tag</label>
             <select id="tag" name="tag" className={css.select} defaultValue={draft.tag} onChange={handleChange}
-                required>
-                <option value="Todo">Todo</option>
-                <option value="Work">Work</option>
-                <option value="Personal">Personal</option>
-                <option value="Meeting">Meeting</option>
-            <option value="Shopping">Shopping</option>
+            required>
+                {tags.map((tag) => {
+                    return <option key={tag} value={tag}>{tag}</option>;
+                })}
             </select>
         </div>
     

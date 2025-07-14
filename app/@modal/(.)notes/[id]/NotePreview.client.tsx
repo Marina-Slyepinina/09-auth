@@ -2,8 +2,8 @@
 import { useParams, useRouter } from "next/navigation";
 import css from "./NotePreview.module.css";
 import { useQuery } from "@tanstack/react-query";
-import { fetchNoteById } from "@/lib/api";
 import Modal from "@/components/Modal/Modal";
+import { fetchNoteById } from "@/lib/api/clientApi";
 
 const NotePreview = () => {
     const { id } = useParams();
@@ -11,7 +11,7 @@ const NotePreview = () => {
 
     const { data: note } = useQuery({
         queryKey: ["note", id],
-        queryFn: () => fetchNoteById(Number(id)),
+        queryFn: () => fetchNoteById(id as string),
         refetchOnMount: false,
     });
 

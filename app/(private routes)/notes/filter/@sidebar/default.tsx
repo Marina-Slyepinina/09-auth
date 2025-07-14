@@ -1,7 +1,7 @@
 import Link from "next/link";
 import css from "./SidebarPage.module.css";
 
-const tags = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
+const tags = ["Todo", "Work", "Personal", "Meeting", "Shopping", "Ideas", "Travel", "Finance", "Health", "Important"];
 
 const SidebarPage = () => {
 
