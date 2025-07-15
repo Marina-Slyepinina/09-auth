@@ -7,10 +7,6 @@ export type RegisterRequest = {
   password: string;
 };
 
-type CheckSessionRequest = {
-  success: boolean;
-};
-
 export type UpdateUserRequest = {
   email: string;
   username: string;
@@ -38,10 +34,14 @@ export const getMe = async () => {
   return res.data;
 }  
 
-export const checkSession = async () => {
-  const res = await nextServer.get<CheckSessionRequest>('/auth/session');
-  return res.data.success;
-};  
+export async function checkSession(): Promise<boolean> {
+  try {
+    await nextServer.get('/auth/session');
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 export const logout = async (): Promise<void> => {
   await nextServer.post('/auth/logout')
